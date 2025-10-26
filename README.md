@@ -1,1 +1,4 @@
-# Data-Science-Projects
+- README.md
+- data/ (raw and processed datasets)
+- notebooks/ (Jupyter Notebooks with EDA, modeling, and results)
+- app/ (RStudio)
