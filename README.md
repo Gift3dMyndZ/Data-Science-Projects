@@ -1,4 +1,4 @@
-# Joshua Wolfe's Data Science Portfolio
+# Mr.Joshua's Data Science Portfolio
 
 Welcome to my data science project portfolio! This repository contains a collection of my work, demonstrating my skills in data analysis, machine learning, and data visualization. Below is a summary of the projects you can find here.
 
