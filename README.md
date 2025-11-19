@@ -31,4 +31,4 @@ Data Cleaning • ETL Automation • Machine Learning Pipelines�
 ## About Me
 
 - 🔗 **LinkedIn:** [www.linkedin.com/in/mrjoshuawolfe](https://www.linkedin.com/in/mrjoshuawolfe)
-- 📧 **Email:** hunterwolfejoshua@icloud.com
+- 📧 **Email:** hunterwolfej@icloud.com
