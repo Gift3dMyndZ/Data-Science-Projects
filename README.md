@@ -1,34 +1,68 @@
-# Mr.Joshua's Data Science Portfolio
+# 👨‍💻 Mr. Joshua's Data Science Portfolio
 
-Welcome to my data science project portfolio! This repository contains a collection of my work, demonstrating my skills in data analysis, machine learning, and data visualization. Below is a summary of the projects you can find here.
-
-## Projects
-
-| Project Name | Description | Key Skills & Tools |
-|---------------|-------------|--------------------|
-| [Titanic Survival Prediction](titanic_survival_predictor) | A classic classification project to predict passenger survival on the Titanic using machine‑learning models such as Logistic Regression and Decision Trees. | Python, Pandas, Scikit‑learn |
-| [Customer Segmentation](customer_segmentation) | Used k‑Means clustering to segment customers based on purchasing patterns and demographics, improving data‑driven marketing strategies. | Python, Pandas, Scikit‑learn, Clustering |
-| [Linear Regression Model](linear_regression_model) | Developed a linear regression model to predict numeric outcomes and evaluate relationships between features. | Python, NumPy, Pandas, Scikit‑learn |
-| ☁️ [Automated Weather ETL Pipeline](weather_etl/weather_etl.py) | Built an automated ETL pipeline using Python, Pandas, and SQLite to extract hourly weather data from the Open‑Meteo API. The pipeline transforms raw JSON into clean tabular data and ingests new data every 6 hours, enabling analytics and performance monitoring. | Python, Pandas, SQLite, API Integration, Data Engineering |
+Welcome to my data science project portfolio!  
+This repository contains a collection of projects showcasing my work in data analytics, machine learning, and data engineering.  
+Each project demonstrates end-to-end development — from data collection, cleaning, and modeling, to visualization and deployment.
 
 ---
 
-### 📊 Tools & Skills at a Glance
+## 🧩 Projects
 
-🧰 **Languages:**  
-🐍 Python 🗄️ SQL ✍️ Markdown  
+| Project Name | Description | Key Skills & Tools |
+|---------------|-------------|--------------------|
+| **Titanic Survival Prediction** | A classic classification project to predict passenger survival on the Titanic using machine‑learning models such as Logistic Regression and Decision Trees. | Python, Pandas, Scikit‑learn |
+| **Customer Segmentation** | Used K‑Means Clustering to segment customers based on purchasing patterns and demographics, helping businesses tailor marketing strategies. | Python, NumPy, Scikit‑learn, Matplotlib |
+| **Automated Weather ETL Pipeline** | Built an automated ETL pipeline using Python, Pandas, and APIs. The pipeline retrieves raw JSONs from OpenWeatherMap, transforms them, and loads structured data into an SQL database for real‑time monitoring. | Python, SQLAlchemy, Requests, Data Engineering |
+| **📈 Stock Price Prediction (LSTM)** | Designed and trained a Long Short‑Term Memory (LSTM) deep‑learning model to forecast stock prices using historical data from Yahoo Finance. Visualized actual vs predicted prices and saved the trained model for future deployment. | Python, TensorFlow/Keras, yFinance, Pandas, NumPy, Matplotlib, Scikit‑learn, Time Series Analysis |
 
-📚 **Libraries & Frameworks:**  
-📈 Pandas 🔢 NumPy ⚙️ scikit‑learn 🧮 SQLAlchemy 📊 Matplotlib 🌈 Seaborn ⏱️ Schedule  
+---
 
-🧠 **Data Engineering & Tools:**  
-☁️ GitHub Codespaces ⚡ GitHub Actions 💾 SQLite 📂 CSV / JSON Processing 🔗 REST API Integration 🤖 Automation  
+## 🧰 Tools & Skills at a Glance
 
-🎯 **Focus Areas:**  
-Data Cleaning • ETL Automation • Machine Learning Pipelines • EDA • Performance Monitoring
+### 💻 Languages
+- Python
+- SQL
+- Markdown / YAML
 
+### 🧮 Libraries & Frameworks
+- **Machine Learning / Deep Learning:** TensorFlow, Keras, Scikit‑learn  
+- **Data Analysis:** Pandas, NumPy  
+- **Data Visualization:** Matplotlib, Seaborn  
+- **Data Acquisition:** yFinance, Requests  
+- **Model Deployment / Automation:** Streamlit *(planned)*, GitHub Codespaces  
 
-## About Me
+### 🧱 Databases & Data Engineering
+- SQL (PostgreSQL, SQLite)
+- SQLAlchemy (ORM)
+- ETL Pipelines
+- RESTful APIs
+- Data Preprocessing & Scaling
+- Feature Engineering
 
-- 🔗 **LinkedIn:** [www.linkedin.com/in/mrjoshuawolfe](https://www.linkedin.com/in/mrjoshuawolfe)
-- 📧 **Email:** hunterwolfej@icloud.com
+### 🧰 Tools & Platforms
+- Git & GitHub
+- GitHub Codespaces
+- Jupyter Notebooks
+- Visual Studio Code
+- Google Colab
+- Render / Hugging Face *(for deployment)*
+- Docker *(planned)*
+
+---
+
+## 📚 Learning Highlights
+- Developing end‑to‑end ML systems (from ingestion → model → visualization)
+- Understanding time series forecasting with LSTM
+- Building reusable ETL data pipelines
+- Version control and collaborative workflow using GitHub Codespaces
+
+---
+
+## 📬 Contact
+
+📧 Email: **hunterwjoshua@gmail.com**  
+🌐 LinkedIn: [linkedin.com/in/hunterwjoshua](https://linkedin.com/in/hunterwjoshua)
+
+---
+
+⭐ **If you find these projects helpful or inspiring, feel free to give this repository a star!**
