@@ -47,10 +47,10 @@ Each project demonstrates full end‑to‑end development — from data collecti
 
 | Project Name | Description | Key Skills & Tools |
 |---------------|-------------|--------------------|
-| **Titanic Survival Prediction** | A classic classification project to predict passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn |
-| **Customer Segmentation** | Implemented K‑Means clustering to categorize customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn |
-| **Automated Weather ETL Pipeline** | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs |
-| **Stock Price Prediction (LSTM)** | Leveraged a Long Short‑Term Memory (LSTM) deep‑learning model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis |
+| [**Titanic Survival Prediction**](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/titanic_survival) | A classic classification project predicting passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn |
+| [**Customer Segmentation**](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/customer_segmentation) | Applied K‑Means clustering to group customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn |
+| [**Automated Weather ETL Pipeline**](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/weather_etl.py) | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs |
+| [**Stock Price Prediction (LSTM)**](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/stock_prediction_lstm) | Leveraged a Long Short‑Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis |
 
 ---
 
