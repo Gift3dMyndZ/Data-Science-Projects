@@ -76,7 +76,7 @@ Each project demonstrates end-to-end development — from data collection, clean
 ## 📬 Contact
 
 📧 Email: **hunterwjoshua@gmail.com**  
-🌐 LinkedIn: [linkedin.com/in/hunterwjoshua](https://linkedin.com/in/hunterwjoshua)
+🌐 LinkedIn: [linkedin.com/in/hunterwjoshua](www.linkedin.com/in/mrjoshuawolfe)
 
 ---
 
