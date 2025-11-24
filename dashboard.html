@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Team Time Analysis Dashboard</title>
+<style>
+/* --- General Styling & Variables --- */
+:root {
+--primary-bg: #f4f7fc;
+--card-bg: #ffffff;
+--header-bg: #2c3e50;
+--text-color: #34495e;
+--text-light: #7f8c8d;
+--border-color: #e_a_e_c_f_0;
+--shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+--border-radius: 8px;
+--font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+/* Chart Colors */
+--c1: #3498db; --c2: #2ecc71; --c3: #f1c40f;
+--c4: #e74c3c; --c5: #9b59b6; --c6: #1abc9c;
+}
+body {
+font-family: var(--font-family);
+background-color: var(--primary-bg);
+color: var(--text-color);
+margin: 0;
+padding: 1rem;
+}
+/* --- Layout Containers --- */
+.dashboard-container {
+max-width: 1400px;
+margin: 0 auto;
+}
+header {
+background-color: var(--header-bg);
+color: white;
+padding: 1.5rem 2rem;
+border-radius: var(--border-radius);
+margin-bottom: 1.5rem;
+box-shadow: var(--shadow);
+}
+header h1 {
+margin: 0;
+font-size: 1.8rem;
+font-weight: 600;
+}
+/* --- Tab Navigation --- */
+.tab-nav {
+display: flex;
+border-bottom: 2px solid var(--border-color);
+margin-bottom: 1.5rem;
+}
+.tab-nav button {
+padding: 1rem 1.5rem;
+border: none;
+background: none;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+color: var(--text-light);
+position: relative;
+transition: color 0.3s ease;
+}
+.tab-nav button::after {
+content: '';
+position: absolute;
+bottom: -2px;
+left: 0;
+width: 100%;
+height: 2px;
+background-color: var(--c1);
+transform: scaleX(0);
+transition: transform 0.3s ease;
+}
+.tab-nav button.active {
+color: var(--text-color);
+}
+.tab-nav button.active::after {
+transform: scaleX(1);
+}
+.tab-pane { display: none; }
+.tab-pane.active { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* --- KPI Cards --- */
+.kpi-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1.5rem;
+margin-bottom: 1.5rem;
+}
+.kpi-card {
+background-color: var(--card-bg);
+padding: 1.5rem;
+border-radius: var(--border-radius);
+box-shadow: var(--shadow);
+border-left: 5px solid;
+}
+.kpi-card .value {
+font-size: 2rem;
+font-weight: 700;
+margin: 0;
+}
+.kpi-card .label {
+font-size: 0.9rem;
+color: var(--text-light);
+margin: 0.25rem 0 0 0;
+}
+/* --- Chart Containers --- */
+.chart-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1.5rem;
+}
+.chart-container {
+background-color: var(--card-bg);
+padding: 1.5rem;
+border-radius: var(--border-radius);
+box-shadow: var(--shadow);
+}
+.chart-container.full-width {
+grid-column: 1 / -1;
+}
+.chart-container h3 {
+margin-top: 0;
+margin-bottom: 1.5rem;
+text-align: center;
+}
+.chart-wrapper {
+position: relative;
+width: 100%;
+height: 350px;
+}
+/* --- SVG Chart & Tooltip Styling --- */
+svg.chart {
+width: 100%;
+height: 100%;
+overflow: visible;
+}
+.chart-tooltip {
+position: absolute;
+background-color: rgba(44, 62, 80, 0.9);
+color: white;
+padding: 0.5rem 0.75rem;
+border-radius: 4px;
+font-size: 0.85rem;
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.2s, transform 0.2s;
+transform: translate(-50%, -100%);
+white-space: nowrap;
+}
+/* --- Detailed Data Table Styling --- */
+.table-wrapper {
+background-color: var(--card-bg);
+padding: 1.5rem;
+border-radius: var(--border-radius);
+box-shadow: var(--shadow);
+overflow-x: auto;
+}
+.data-table {
+width: 100%;
+border-collapse: collapse;
+}
+.data-table th, .data-table td {
+padding: 0.75rem 1rem;
+text-align: left;
+border-bottom: 1px solid var(--border-color);
+}
+.data-table th {
+background-color: var(--primary-bg);
+font-weight: 600;
+}
+.data-table tbody tr:hover {
+background-color: #f8f9fa;
+}
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+.chart-grid {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 768px) {
+body { padding: 0.5rem; }
+header { padding: 1rem 1.5rem; }
+header h1 { font-size: 1.5rem; }
+.kpi-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="dashboard-container">
+<header>
+<h1>Engineering Team Time Analysis</h1>
+</header>
+<nav class="tab-nav">
+<button class="active" data-target="#dashboard-summary">Dashboard Summary</button>
+<button data-target="#detailed-log">Detailed Time Log</button>
+</nav>
+<main>
+<div id="dashboard-summary" class="tab-pane active">
+<!-- KPI Cards Section -->
+<div id="kpi-container" class="kpi-grid"></div>
+<!-- Charts Section -->
+<div class="chart-grid">
+<div class="chart-container">
+<h3>Hours by Category</h3>
+<div id="category-chart-wrapper" class="chart-wrapper"></div>
+</div>
+<div class="chart-container">
+<h3>Hours by Project</h3>
+<div id="project-chart-wrapper" class="chart-wrapper"></div>
+</div>
+<div class="chart-container full-width">
+<h3>Engineer Contribution Breakdown</h3>
+<div id="engineer-chart-wrapper" class="chart-wrapper"></div>
+</div>
+</div>
+</div>
+<div id="detailed-log" class="tab-pane">
+<div class="table-wrapper">
+<table id="raw-data-table" class="data-table"></table>
+</div>
+</div>
+</main>
+</div>
+<div class="chart-tooltip"></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+// --- DATA (Simulating access to external files) ---
+const timeDataRaw = `
+Date	Engineer Name	Role	Team	Project Name	Category	Hours	Billable
+1/6/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	6.00	Yes
+1/6/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/6/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/6/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	5.00	Yes
+1/6/2025	Bob Martinez	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/6/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Sprint Planning	Meetings	2.00	No
+1/6/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Automation Platform	Projects	7.00	Yes
+1/6/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/6/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Automation Platform	Projects	4.00	Yes
+1/6/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	3.00	No
+1/6/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/7/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	5.00	Yes
+1/7/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/7/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Architecture Review	Meetings	2.00	No
+1/7/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	6.00	Yes
+1/7/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Security Patch Rollout	Projects	2.00	Yes
+1/7/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/7/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Automation Platform	Projects	6.00	Yes
+1/7/2025	Chloe Patel	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	1.00	No
+1/7/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/7/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	3.00	Yes
+1/7/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	3.00	No
+1/7/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Stakeholder Sync	Meetings	2.00	No
+1/8/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	4.00	Yes
+1/8/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	3.00	No
+1/8/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/8/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Security Patch Rollout	Projects	5.00	Yes
+1/8/2025	Bob Martinez	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/8/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/8/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Automation Platform	Projects	5.00	Yes
+1/8/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Tooling Improvement	Projects	2.00	No
+1/8/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/8/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Cloud Governance Framework	Projects	4.00	No
+1/8/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	3.00	No
+1/8/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/9/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	5.00	Yes
+1/9/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/9/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Technical Design Review	Meetings	2.00	No
+1/9/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Security Patch Rollout	Projects	4.00	Yes
+1/9/2025	Bob Martinez	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	3.00	No
+1/9/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/9/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Automation Platform	Projects	6.00	Yes
+1/9/2025	Chloe Patel	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	1.00	No
+1/9/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/9/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Cloud Governance Framework	Projects	5.00	No
+1/9/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/9/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Stakeholder Sync	Meetings	1.00	No
+1/10/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Cloud Migration - Finance	Projects	4.00	Yes
+1/10/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/10/2025	Alice Nguyen	Sr Cloud Engineer	Cloud Eng	Daily Standup	Meetings	1.00	No
+1/10/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Security Patch Rollout	Projects	5.00	Yes
+1/10/2025	Bob Martinez	Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/10/2025	Bob Martinez	Cloud Engineer	Cloud Eng	Weekly Retrospective	Meetings	2.00	No
+1/10/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Automation Platform	Projects	5.00	Yes
+1/10/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Tooling Improvement	Projects	2.00	No
+1/10/2025	Chloe Patel	Cloud Engineer	Cloud Eng	Weekly Retrospective	Meetings	2.00	No
+1/10/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Cloud Governance Framework	Projects	4.00	No
+1/10/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	General Monitoring	General Monitoring	2.00	No
+1/10/2025	Daniel Lee	Sr Cloud Engineer	Cloud Eng	Weekly Retrospective	Meetings	2.00	No
+`;
+const pivotsDataRaw = `
+Category	SUM of Hours
+General Monitoring	35.00
+Meetings	27.00
+Projects	104.00
+Grand Total	166.00
+
+Engineer Name	General Monitoring	Meetings	Projects	Grand Total
+Alice Nguyen	11.00	7.00	24.00	42.00
+Bob Martinez	9.00	7.00	27.00	43.00
+Chloe Patel	2.00	6.00	33.00	41.00
+Daniel Lee	13.00	7.00	20.00	40.00
+Grand Total	35.00	27.00	104.00	166.00
+
+Project Name	SUM of Hours
+Automation Platform	33.00
+Cloud Governance Framework	13.00
+Cloud Migration - Finance	38.00
+Security Patch Rollout	16.00
+Tooling Improvement	4.00
+Grand Total	104.00
+`;
+// --- UTILITY & PARSING FUNCTIONS ---
+const parseTsv = (rawText) => {
+const lines = rawText.trim().split('\n').map(line => line.trim());
+if (lines.length < 2) return [];
+const headers = lines[0].split('\t');
+return lines.slice(1).map(line => {
+const values = line.split('\t');
+const obj = {};
+headers.forEach((header, i) => {
+obj[header] = values[i];
+});
+return obj;
+});
+};
+const timeData = parseTsv(timeDataRaw);
+// --- DATA PROCESSING & CALCULATIONS ---
+const calculateKPIs = () => {
+const totalHours = timeData.reduce((sum, row) => sum + parseFloat(row.Hours), 0);
+const billableHours = timeData.filter(row => row.Billable === 'Yes').reduce((sum, row) => sum + parseFloat(row.Hours), 0);
+const projectHours = timeData.filter(row => row.Category === 'Projects').reduce((sum, row) => sum + parseFloat(row.Hours), 0);
+const billableEfficiency = totalHours > 0 ? (billableHours / totalHours) * 100 : 0;
+return {
+totalHours,
+billableHours,
+projectHours,
+billableEfficiency
+};
+};
+const getPivotData = () => {
+const sections = pivotsDataRaw.trim().split('\n\n');
+const categoryData = parseTsv(sections[0]).filter(r => r.Category !== 'Grand Total').map(r => ({ label: r.Category, value: parseFloat(r['SUM of Hours']) }));
+const engineerData = parseTsv(sections[1]).filter(r => r['Engineer Name'] !== 'Grand Total');
+const projectData = parseTsv(sections[2]).filter(r => r['Project Name'] !== 'Grand Total').map(r => ({ label: r['Project Name'], value: parseFloat(r['SUM of Hours']) }));
+return { categoryData, engineerData, projectData };
+};
+// --- RENDERING FUNCTIONS ---
+const renderKPIs = (kpis) => {
+const container = document.getElementById('kpi-container');
+container.innerHTML = `
+<div class="kpi-card" style="border-color: var(--c1);">
+<p class="value">${kpis.totalHours.toFixed(2)}</p>
+<p class="label">Total Hours Logged</p>
+</div>
+<div class="kpi-card" style="border-color: var(--c2);">
+<p class="value">${kpis.billableHours.toFixed(2)}</p>
+<p class="label">Total Billable Hours</p>
+</div>
+<div class="kpi-card" style="border-color: var(--c3);">
+<p class="value">${kpis.billableEfficiency.toFixed(1)}%</p>
+<p class="label">Billable Efficiency</p>
+</div>
+<div class="kpi-card" style="border-color: var(--c4);">
+<p class="value">${kpis.projectHours.toFixed(2)}</p>
+<p class="label">Total Project Hours</p>
+</div>
+`;
+};
+const renderDetailedTable = () => {
+const table = document.getElementById('raw-data-table');
+if (!timeData.length) return;
+const headers = Object.keys(timeData[0]);
+const thead = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
+const tbody = `<tbody>${timeData.map(row =>
+`<tr>${headers.map(h => `<td>${row[h]}</td>`).join('')}</tr>`
+).join('')}</tbody>`;
+table.innerHTML = thead + tbody;
+};
+// --- SVG CHART GENERATION ---
+const tooltip = document.querySelector('.chart-tooltip');
+const showTooltip = (e, text) => {
+tooltip.innerHTML = text;
+tooltip.style.opacity = '1';
+tooltip.style.left = `${e.pageX}px`;
+tooltip.style.top = `${e.pageY - 10}px`;
+};
+const hideTooltip = () => {
+tooltip.style.opacity = '0';
+};
+const createSvgElement = (tag, attrs) => {
+const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+for (let key in attrs) {
+el.setAttribute(key, attrs[key]);
+}
+return el;
+};
+const colors = ['var(--c2)', 'var(--c3)', 'var(--c1)', 'var(--c4)', 'var(--c5)', 'var(--c6)'];
+const createDonutChart = (selector, data) => {
+const container = document.querySelector(selector);
+container.innerHTML = '';
+const svg = createSvgElement('svg', { class: 'chart', viewBox: '0 0 100 100' });
+container.appendChild(svg);
+const total = data.reduce((sum, item) => sum + item.value, 0);
+let cumulativePercent = 0;
+const radius = 40;
+const thickness = 15;
+data.forEach((item, i) => {
+const percent = item.value / total;
+const [startX, startY] = [50 + radius * Math.cos(2 * Math.PI * cumulativePercent), 50 + radius * Math.sin(2 * Math.PI * cumulativePercent)];
+cumulativePercent += percent;
+const [endX, endY] = [50 + radius * Math.cos(2 * Math.PI * cumulativePercent), 50 + radius * Math.sin(2 * Math.PI * cumulativePercent)];
+const largeArcFlag = percent > 0.5 ? 1 : 0;
+const pathData = `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`;
+const path = createSvgElement('path', {
+d: pathData,
+fill: 'none',
+stroke: colors[i % colors.length],
+'stroke-width': thickness,
+});
+path.addEventListener('mousemove', (e) => showTooltip(e, `${item.label}: ${item.value.toFixed(2)} hrs (${(percent*100).toFixed(1)}%)`));
+path.addEventListener('mouseout', hideTooltip);
+svg.appendChild(path);
+});
+// Add legend
+const legendGroup = createSvgElement('g');
+data.forEach((item, i) => {
+const y = 8 + i * 10;
+legendGroup.appendChild(createSvgElement('rect', { x: 10, y: y, width: 5, height: 5, fill: colors[i % colors.length] }));
+const text = createSvgElement('text', { x: 18, y: y + 4, 'font-size': '4px', fill: 'var(--text-color)' });
+text.textContent = item.label;
+legendGroup.appendChild(text);
+});
+// svg.appendChild(legendGroup); // Decided against legend inside SVG for better layout control
+};
+const createBarChart = (selector, data, yLabel = 'Hours') => {
+const container = document.querySelector(selector);
+container.innerHTML = '';
+const svg = createSvgElement('svg', { class: 'chart', viewBox: '0 0 200 100' });
+container.appendChild(svg);
+const maxValue = Math.max(...data.map(d => d.value));
+const chartArea = { x: 20, y: 10, width: 170, height: 75 };
+const barWidth = chartArea.width / data.length * 0.7;
+const barGap = chartArea.width / data.length * 0.3;
+// Y-axis
+svg.appendChild(createSvgElement('line', { x1: chartArea.x, y1: chartArea.y, x2: chartArea.x, y2: chartArea.y + chartArea.height, stroke: 'var(--border-color)' }));
+for (let i = 0; i <= 4; i++) {
+const val = (maxValue / 4 * i);
+const y = chartArea.y + chartArea.height - (val / maxValue * chartArea.height);
+const text = createSvgElement('text', { x: chartArea.x - 2, y: y, 'font-size': '5px', 'text-anchor': 'end', dy: '1.5', fill: 'var(--text-light)' });
+text.textContent = val.toFixed(0);
+svg.appendChild(text);
+}
+// X-axis
+svg.appendChild(createSvgElement('line', { x1: chartArea.x, y1: chartArea.y + chartArea.height, x2: chartArea.x + chartArea.width, y2: chartArea.y + chartArea.height, stroke: 'var(--border-color)' }));
+// Bars
+data.forEach((item, i) => {
+const height = (item.value / maxValue) * chartArea.height;
+const x = chartArea.x + i * (barWidth + barGap) + barGap / 2;
+const y = chartArea.y + chartArea.height - height;
+const bar = createSvgElement('rect', {
+x: x, y: y, width: barWidth, height: height, fill: colors[i % colors.length],
+style: 'transition: opacity 0.2s',
+});
+bar.addEventListener('mousemove', (e) => {
+showTooltip(e, `${item.label}: ${item.value.toFixed(2)} hrs`);
+bar.style.opacity = 0.8;
+});
+bar.addEventListener('mouseout', () => {
+hideTooltip();
+bar.style.opacity = 1;
+});
+svg.appendChild(bar);
+const label = createSvgElement('text', {
+x: x + barWidth / 2, y: chartArea.y + chartArea.height + 5, 'font-size': '4px', 'text-anchor': 'middle', fill: 'var(--text-color)'
+});
+label.textContent = item.label.length > 15 ? item.label.substring(0, 13) + '...' : item.label;
+svg.appendChild(label);
+});
+};
+const createStackedBarChart = (selector, data) => {
+const container = document.querySelector(selector);
+container.innerHTML = '';
+const svg = createSvgElement('svg', { class: 'chart', viewBox: '0 0 200 100' });
+container.appendChild(svg);
+const categories = ['Projects', 'Meetings', 'General Monitoring'];
+const engineers = data.map(d => d['Engineer Name']);
+const maxValue = Math.max(...data.map(d => parseFloat(d['Grand Total'])));
+const chartArea = { x: 25, y: 10, width: 145, height: 75 };
+const barWidth = chartArea.width / engineers.length * 0.7;
+const barGap = chartArea.width / engineers.length * 0.3;
+// Y-axis
+svg.appendChild(createSvgElement('line', { x1: chartArea.x, y1: chartArea.y, x2: chartArea.x, y2: chartArea.y + chartArea.height, stroke: 'var(--border-color)' }));
+for (let i = 0; i <= 4; i++) {
+const val = Math.ceil(maxValue / 4 * i);
+const y = chartArea.y + chartArea.height - (val / maxValue * chartArea.height);
+const text = createSvgElement('text', { x: chartArea.x - 2, y: y, 'font-size': '5px', 'text-anchor': 'end', dy: '1.5', fill: 'var(--text-light)' });
+text.textContent = val;
+svg.appendChild(text);
+}
+// X-axis
+svg.appendChild(createSvgElement('line', { x1: chartArea.x, y1: chartArea.y + chartArea.height, x2: chartArea.x + chartArea.width, y2: chartArea.y + chartArea.height, stroke: 'var(--border-color)' }));
+// Bars
+data.forEach((engineer, i) => {
+const x = chartArea.x + i * (barWidth + barGap) + barGap / 2;
+let currentHeight = 0;
+categories.forEach((cat, j) => {
+const value = parseFloat(engineer[cat] || 0);
+if (value === 0) return;
+const height = (value / maxValue) * chartArea.height;
+const y = chartArea.y + chartArea.height - height - currentHeight;
+const rect = createSvgElement('rect', {
+x: x, y: y, width: barWidth, height: height, fill: colors[j],
+style: 'transition: opacity 0.2s',
+});
+rect.addEventListener('mousemove', (e) => {
+showTooltip(e, `${engineer['Engineer Name']} - ${cat}: ${value.toFixed(2)} hrs`);
+rect.style.opacity = 0.8;
+});
+rect.addEventListener('mouseout', () => {
+hideTooltip();
+rect.style.opacity = 1;
+});
+svg.appendChild(rect);
+currentHeight += height;
+});
+const label = createSvgElement('text', {
+x: x + barWidth / 2, y: chartArea.y + chartArea.height + 5, 'font-size': '5px', 'text-anchor': 'middle', fill: 'var(--text-color)'
+});
+label.textContent = engineer['Engineer Name'];
+svg.appendChild(label);
+});
+// Legend
+const legendGroup = createSvgElement('g', { transform: `translate(${chartArea.x + chartArea.width + 5}, ${chartArea.y})` });
+categories.forEach((cat, i) => {
+const y = i * 10;
+legendGroup.appendChild(createSvgElement('rect', { x: 0, y: y, width: 4, height: 4, fill: colors[i] }));
+const text = createSvgElement('text', { x: 6, y: y + 3, 'font-size': '4px', fill: 'var(--text-color)' });
+text.textContent = cat;
+legendGroup.appendChild(text);
+});
+svg.appendChild(legendGroup);
+};
+// --- TAB SWITCHING LOGIC ---
+const setupTabs = () => {
+const tabButtons = document.querySelectorAll('.tab-nav button');
+const tabPanes = document.querySelectorAll('.tab-pane');
+tabButtons.forEach(button => {
+button.addEventListener('click', () => {
+tabButtons.forEach(btn => btn.classList.remove('active'));
+tabPanes.forEach(pane => pane.classList.remove('active'));
+button.classList.add('active');
+document.querySelector(button.dataset.target).classList.add('active');
+});
+});
+};
+// --- INITIALIZATION ---
+const initDashboard = () => {
+// 1. Calculate and Render KPIs
+const kpis = calculateKPIs();
+renderKPIs(kpis);
+// 2. Get Pivot Data and Render Charts
+const { categoryData, engineerData, projectData } = getPivotData();
+createDonutChart('#category-chart-wrapper', categoryData);
+createBarChart('#project-chart-wrapper', projectData);
+createStackedBarChart('#engineer-chart-wrapper', engineerData);
+// 3. Render Detailed Data Table
+renderDetailedTable();
+// 4. Set up Tab Functionality
+setupTabs();
+};
+initDashboard();
+});
+</script>
+</body>
+</html>
