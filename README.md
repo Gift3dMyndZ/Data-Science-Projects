@@ -45,12 +45,12 @@ Each project demonstrates full end‑to‑end development — from data collecti
 
 ## 📁 Projects
 
-| Project Name | Description | Key Skills & Tools | Code |
-|---------------|-------------|--------------------|------|
-| **Titanic Survival Prediction** | A classic classification project to predict passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />] |
-| **Customer Segmentation** | Implemented K‑Means clustering to categorize customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />] |
-| **Automated Weather ETL Pipeline** | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/weather_etl.py) |
-| **Stock Price Prediction (LSTM)** | Leveraged a Long Short‑Term Memory (LSTM) deep‑learning model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />] |
+| Project Name | Description | Key Skills & Tools |
+|---------------|-------------|--------------------|
+| **Titanic Survival Prediction** | A classic classification project to predict passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn |
+| **Customer Segmentation** | Implemented K‑Means clustering to categorize customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn |
+| **Automated Weather ETL Pipeline** | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs |
+| **Stock Price Prediction (LSTM)** | Leveraged a Long Short‑Term Memory (LSTM) deep‑learning model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis |
 
 ---
 
