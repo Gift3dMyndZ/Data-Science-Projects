@@ -1,3 +1,18 @@
+<p align="center">
+  <img src="banner.png" alt="Mr. Joshua’s Data Science Portfolio" width="100%">
+</p>
+<p align="center">
+  <em>Turning Data Into Insight — Machine Learning • Time Series • Visualization</em>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white">
+  <img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white">
+  <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white">
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
+  <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white">
+</p>
+
 # 👨‍💻 Mr. Joshua's Data Science Portfolio
 
 Welcome to my data science project portfolio!  
