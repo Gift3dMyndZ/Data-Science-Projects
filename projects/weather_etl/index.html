@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Corrected Title for this specific project -->
+    <title>Project: Weather Data ETL Pipeline</title>
+    <style>
+        /* Using the same styles as your main portfolio for consistency */
+        :root {
+            --bg-body: #0c0c1d;
+            --bg-content-container: rgba(255, 255, 255, 0.95);
+            --border-color: #e0e0e0;
+            --text-primary: #212529;
+            --text-secondary: #5a5a5a;
+            --accent-color: #007BFF;
+            --code-bg: #f8f9fa;
+            --header-font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            line-height: 1.7;
+        }
+
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px; /* A bit narrower for a project page */
+            margin: 0 auto;
+            background-color: var(--bg-content-container);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: #000;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p, li {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        /* Code block styling */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            white-space: pre-wrap; /* Wraps long lines of code */
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+        code {
+             background-color: var(--code-bg);
+             padding: 2px 6px;
+             border-radius: 4px;
+             font-family: 'Courier New', Courier, monospace;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            .container { padding: 25px; }
+            h1 { font-size: 2rem; }
+            p, li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- This link correctly goes back two directories to the main portfolio -->
+        <a href="../../index.html" class="back-link">← Back to Main Portfolio</a>
+
+        <!-- Project Title -->
+        <h1>Weather Data ETL Pipeline</h1>
+
+        <p>
+            This project is an automated ETL (Extract, Transform, Load) pipeline built in Python. It fetches real-time weather data for a predefined list of cities from the OpenWeatherMap API, cleans and structures the data, and then loads it into a PostgreSQL database for storage and future analysis.
+        </p>
+
+        <!-- Project Overview Section -->
+        <h2>Project Overview</h2>
+        <p>The ETL pipeline executes the following core functions:</p>
+        <ol>
+            <li><strong>Extract:</strong> The script sends GET requests to the OpenWeatherMap API to retrieve current weather data for several major cities. API keys and other configurations are securely managed using environment variables.</li>
+            <li><strong>Transform:</strong> The raw JSON responses from the API are parsed. Relevant fields like temperature, humidity, wind speed, and weather conditions are selected. Data is cleaned by converting temperature from Kelvin to Celsius and structuring it into a clean, tabular format using the Pandas library.</li>
+            <li><strong>Load:</strong> A connection is established to a PostgreSQL database using SQLAlchemy. The transformed data, now in a Pandas DataFrame, is efficiently loaded into a dedicated `weather_data` table. The script handles table creation if it doesn't already exist.</li>
+            <li><strong>Logging:</strong> The script provides informative log messages throughout the process, indicating its progress, successful operations, and any potential errors.</li>
+        </ol>
+
+        <!-- Technologies Section -->
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Python 3</li>
+            <li>Pandas (for data transformation)</li>
+            <li>Requests (for API communication)</li>
+            <li>SQLAlchemy (for database abstraction)</li>
+            <li>Psycopg2 (PostgreSQL adapter for Python)</li>
+            <li>python-dotenv (for managing environment variables)</li>
+        </ul>
+
+        <!-- How to Run Section -->
+        <h2>How to Run</h2>
+        <p>1. First, clone the repository and navigate to the project directory:</p>
+        <pre><code>cd weather-etl-pipeline</code></pre>
+
+        <p>2. Create a <code>.env</code> file in the root of the directory to store your credentials. You will need a free API key from <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a> and your PostgreSQL connection details.</p>
+        <pre><code># .env file
+API_KEY='your_openweathermap_api_key'
+DB_USER='your_db_user'
+DB_PASSWORD='your_db_password'
+DB_HOST='localhost'
+DB_PORT='5432'
+DB_NAME='your_db_name'
+</code></pre>
+
+        <p>3. Install the required Python packages:</p>
+        <pre><code>pip install -r requirements.txt</code></pre>
+
+        <p>4. Run the ETL script:</p>
+        <pre><code>python main_etl.py</code></pre>
+        <p><em>The script will execute the pipeline and load the latest weather data into your specified database.</em></p>
+
+        <!-- Sample Output Section -->
+        <h2>Sample Output</h2>
+        <p>When you run the script, you will see console output similar to the following, confirming the process steps:</p>
+        <pre><code>
+INFO:root:Starting weather ETL process...
+INFO:root:Fetching data for London, GB...
+INFO:root:Fetching data for New York, US...
+INFO:root:Fetching data for Tokyo, JP...
+INFO:root:Fetching data for Sydney, AU...
+INFO:root:All data fetched successfully.
+INFO:root:Transforming data...
+INFO:root:Data transformation complete.
+INFO:root:Loading data into PostgreSQL database...
+INFO:root:Data loaded successfully. 4 rows inserted into weather_data.
+INFO:root:ETL process finished.
+        </code></pre>
+
+    </div>
+
+    <!-- The same background script from your main page -->
+    <script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray;
+        class Particle{ constructor(x,y,dX,dY,s,c){this.x=x;this.y=y;this.directionX=dX;this.directionY=dY;this.size=s;this.color=c;} draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2,false);ctx.fillStyle='rgba(173, 216, 230, 0.5)';ctx.fill();} update(){if(this.x>canvas.width||this.x<0){this.directionX=-this.directionX;} if(this.y>canvas.height||this.y<0){this.directionY=-this.directionY;} this.x+=this.directionX;this.y+=this.directionY;this.draw();}}
+        function init(){particlesArray=[];let n=(canvas.height*canvas.width)/9e3;for(let i=0;i<n;i++){let s=(Math.random()*2)+1,x=Math.random()*(innerWidth-s*2-s*2)+s*2,y=Math.random()*(innerHeight-s*2-s*2)+s*2,dX=(Math.random()*.4)-.2,dY=(Math.random()*.4)-.2;particlesArray.push(new Particle(x,y,dX,dY,s,'rgba(173, 216, 230, 0.5)'));}}
+        function connect(){let o=1;for(let a=0;a<particlesArray.length;a++){for(let b=a;b<particlesArray.length;b++){let d=((particlesArray[a].x-particlesArray[b].x)*(particlesArray[a].x-particlesArray[b].x))+((particlesArray[a].y-particlesArray[b].y)*(particlesArray[a].y-particlesArray[b].y));if(d<(canvas.width/7)*(canvas.height/7)){o=1-(d/2e4);ctx.strokeStyle=`rgba(173, 216, 230, ${o})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(particlesArray[a].x,particlesArray[a].y);ctx.lineTo(particlesArray[b].x,particlesArray[b].y);ctx.stroke();}}}}
+        function animate(){requestAnimationFrame(animate);ctx.clearRect(0,0,innerWidth,innerHeight);for(let i=0;i<particlesArray.length;i++){particlesArray[i].update();} connect();}
+        window.addEventListener('resize',()=>{canvas.width=innerWidth;canvas.height=innerHeight;init();});
+        init();animate();
+    </script>
+</body>
+</html>
