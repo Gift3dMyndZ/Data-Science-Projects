@@ -47,8 +47,7 @@ Each project demonstrates full end‑to‑end development — from data collecti
 
 | Project Name | Description | Key Skills & Tools |
 |---------------|-------------|--------------------|
-| <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/titanic_survival" target="_blank"><b>Titanic Survival Prediction</b></a> | A classic classification project predicting passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn |
-| <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/customer_segmentation" target="_blank"><b>Customer Segmentation</b></a> | Applied K‑Means clustering to group customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn |
+| <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/nltk_sentiment_analyzer" target="_blank"><b>NLTK Sentiment Analyzer</b></a> | Developed a sentiment analysis tool using NLTK's VADER to classify text as positive, negative, or neutral. Includes text preprocessing and visualization of results. | Python, NLTK (VADER), Pandas, Natural Language Processing |
 | <a href="https://gift3dmyndz.github.io/Data-Science-Projects/dashboard.html" target="_blank"><b>Automated Weather ETL Pipeline</b></a> | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs |
 | <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/stock_price_prediction_lstm" target="_blank"><b>Stock Price Prediction (LSTM)</b></a> | Leveraged a Long Short‑Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis |
 
