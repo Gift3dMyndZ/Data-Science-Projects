@@ -61,7 +61,8 @@ Always learning, experimenting, and sharing knowledge.
 ---
 
 ## 📊 Key Focus Areas
-- Machine Learning (Supervised & Unsupervised)
+- Machine Learning (Supervised & Unsupervised,)
+- Natural Language Processing (NLP)
 - Deep Learning & Time Series Forecasting
 - Data Engineering (ETL Pipelines, Automation)
 - Data Visualization & Insights Communication
@@ -77,11 +78,12 @@ Always learning, experimenting, and sharing knowledge.
 - Markdown / YAML
 
 ### 🧮 Libraries & Frameworks
-- **Machine Learning / Deep Learning:** TensorFlow, Keras, Scikit‑learn  
-- **Data Analysis:** Pandas, NumPy  
-- **Data Visualization:** Matplotlib, Seaborn  
-- **Data Acquisition:** yFinance, Requests  
-- **Model Deployment / Automation:** Streamlit *(planned)*, GitHub Codespaces  
+-   Machine Learning / Deep Learning:** TensorFlow, Keras, Scikit-learn
+-   Natural Language Processing (NLP):** NLTK
+-   Data Analysis:** Pandas, NumPy
+-   Data Visualization:** Matplotlib, Seaborn
+-   Data Acquisition:** yFinance, Requests
+-   Model Deployment / Automation:** Streamlit (planned), GitHub Codespaces
 
 ### 🧱 Databases & Data Engineering
 - SQL (PostgreSQL, SQLite)  
@@ -104,9 +106,12 @@ Always learning, experimenting, and sharing knowledge.
 
 ## 📚 Learning Highlights
 - Developing end‑to‑end ML systems (from ingestion → model → visualization)  
-- Understanding time series forecasting with LSTM  
-- Building reusable ETL data pipelines  
-- Version control and collaborative workflow using GitHub Codespaces  
+- Developing end-to-end ML systems (from ingestion -> model -> visualization)
+- Implementing NLP models for tasks like sentiment analysis using NLTK.
+- Understanding time series forecasting with LSTM
+- Building reusable ETL data pipelines
+- Version control and collaborative workflow using GitHub Codespaces
+
 
 ---
 
