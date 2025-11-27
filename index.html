@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Joshua's Data Science Portfolio</title>
+    <style>
+        /* --- Global Styles & Color Palette (Light Theme) --- */
+        :root {
+            --bg-body: #0c0c1d; /* Dark navy blue for the stellar background */
+            --bg-content-container: rgba(255, 255, 255, 0.95); /* Semi-transparent white for frosted glass effect */
+            --bg-card: rgba(255, 255, 255, 1); /* Opaque white for cards */
+            --bg-tag: #e9f4ff; /* Light blue for skill tags */
+            --border-color: #e0e0e0;
+            --text-primary: #212529; /* Very dark gray for main text */
+            --text-secondary: #5a5a5a; /* Lighter gray for subtext */
+            --accent-color: #007BFF; /* Professional blue for links and highlights */
+            --header-font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Dynamic Canvas Background --- */
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Places the canvas behind all other content */
+        }
+
+        /* --- Main Content Container --- */
+        .container {
+            width: 100%;
+            max-width: 1400px; /* Increased max-width for grid layout */
+            margin: 0 auto;
+            background-color: var(--bg-content-container);
+            backdrop-filter: blur(10px); /* Creates the frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Header / Hero Section --- */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(0, 123, 255, 0));
+            border: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+            border-bottom: none;
+            color: #000;
+        }
+        
+        header p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* --- Main Grid Layout for Cards --- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- General Section & Card Styling --- */
+        .grid-section {
+            grid-column: 1 / -1; /* Make section titles span full width */
+        }
+
+        .grid-section h2 {
+            font-family: var(--header-font);
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .content-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent-color);
+        }
+
+        .content-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* --- Typography within Cards --- */
+        .content-card p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            flex-grow: 1; /* Allows description to take up space */
+        }
+
+        .content-card a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .content-card a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .content-card ul { list-style-type: none; padding: 0; margin: 0; }
+        .content-card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1.1rem;
+        }
+        .content-card li::before {
+            content: '»';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* --- Project Card Specifics --- */
+        .project-card {
+            /* Inherits from .content-card */
+        }
+
+        .project-card h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .project-card h3 a:hover {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .skill-tags {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-tag);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- Skills Section (already card-based) --- */
+        .skill-card h3 { font-size: 1.5rem; }
+        .skill-card ul { padding: 0; margin: 0; }
+        .skill-card li { font-size: 1rem; }
+        .skill-card strong {
+            color: var(--text-primary);
+            font-weight: 700;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        footer a { margin: 0 10px; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .main-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            .container { padding: 20px; }
+            header h1 { font-size: 2rem; }
+            header p { font-size: 1.1rem; }
+            .grid-section h2 { font-size: 1.6rem; }
+            .content-card { padding: 25px; }
+            .content-card p, .content-card li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="background-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <h1>👨‍💻 Mr. Joshua's Data Science Portfolio</h1>
+            <p>Welcome! This portfolio is a curated collection of my work in data analytics, machine learning, and data engineering, demonstrating full end-to-end project development.</p>
+        </header>
+
+        <div class="main-grid">
+
+            <!-- About Me Section -->
+            <section class="grid-section" id="about-me">
+                <h2>🧠 About Me</h2>
+            </section>
+
+            <div class="content-card">
+                <!-- H3 removed for better hierarchy -->
+                <p>I'm Josh — a passionate data scientist and problem solver. My mission is to transform complex data into actionable insights through machine learning, analytics, and automation. Always learning, experimenting, and sharing knowledge.</p>
+            </div>
+
+            <div class="content-card">
+                <h3>🎯 Key Focus Areas</h3>
+                <ul>
+                    <li>Machine Learning (Supervised & Unsupervised)</li>
+                    <li>Natural Language Processing (NLP)</li>
+                    <li>Deep Learning & Time Series Forecasting</li>
+                    <li>Data Engineering (ETL Pipelines, Automation)</li>
+                    <li>Data Visualization & Insights Communication</li>
+                </ul>
+            </div>
+            
+            <!-- Projects Section -->
+            <section class="grid-section" id="projects">
+                <h2>📁 Projects</h2>
+            </section>
+
+            <div class="content-card project-card">
+                <h3><a href="#">NLTK Sentiment Analyzer</a></h3>
+                <p>Developed a sentiment analysis tool using NLTK's VADER to classify text as positive, negative, or neutral. Includes text preprocessing and visualization of results.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">NLTK</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NLP</span>
+                </div>
+            </div>
+
+            <div class="content-card project-card">
+                <h3><a href="#">Automated Weather ETL Pipeline</a></h3>
+                <p>Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">REST APIs</span>
+                    <span class="skill-tag">ETL</span>
+                </div>
+            </div>
+
+            <div class="content-card project-card">
+                <h3><a href="#">Stock Price Prediction (LSTM)</a></h3>
+                <p>Leveraged a Long Short-Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">Time Series</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                </div>
+            </div>
+
+            <!-- Tools & Skills Section -->
+            <section class="grid-section" id="tools-skills">
+                <h2>🧰 Tools & Skills at a Glance</h2>
+            </section>
+
+            <div class="content-card skill-card">
+                <h3>💻 Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>Markdown / YAML</li>
+                </ul>
+            </div>
+
+            <div class="content-card skill-card">
+                <h3>📚 Libraries & Frameworks</h3>
+                <ul>
+                    <strong>Machine Learning / Deep Learning:</strong>
+                    <li>TensorFlow, Keras, Scikit-learn</li>
+                    <strong>Natural Language Processing (NLP):</strong>
+                    <li>NLTK</li>
+                    <strong>Data Analysis & Visualization:</strong>
+                    <li>Pandas, NumPy, Matplotlib, Seaborn</li>
+                </ul>
+            </div>
+
+            <div class="content-card skill-card">
+                <h3>🗄️ Data Engineering</h3>
+                <ul>
+                    <li>SQL (PostgreSQL, SQLite)</li>
+                    <li>SQLAlchemy (ORM)</li>
+                    <li>ETL Pipelines & RESTful APIs</li>
+                    <li>Data Preprocessing & Scaling</li>
+                    <li>Feature Engineering</li>
+                </ul>
+            </div>
+
+            <!-- Contact Section -->
+            <section class="grid-section" id="contact">
+                <h2>📬 Contact</h2>
+            </section>
+
+            <div class="content-card">
+                <!-- H3 removed for better hierarchy -->
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:hunterwolfej@icloud.com">hunterwolfej@icloud.com</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">linkedin.com/in/mrjoshuawolfe</a></li>
+                </ul>
+            </div>
+            
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Mr. Joshua Wolfe — Data Science Portfolio</p>
+            <p>
+                <a href="https://www.linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                <a href="mailto:hunterwolfej@icloud.com">Email</a> |
+                <a href="#">GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // --- JavaScript for Dynamic Canvas Background ---
+
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(173, 216, 230, 0.5)';
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(173, 216, 230, 0.5)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = `rgba(173, 216, 230, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+    </script>
+
+</body>
+</html>
