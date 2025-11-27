@@ -54,7 +54,7 @@ Each project demonstrates full end‑to‑end development — from data collecti
 ---
 
 ## 🧠 About Me
-I’m **Mr. Joshua Wolfe** — a passionate data scientist and problem solver.  
+I’m **Josh** — a passionate data scientist and problem solver.  
 My mission is to transform complex data into actionable insights through machine learning, analytics, and automation.  
 Always learning, experimenting, and sharing knowledge.
 
