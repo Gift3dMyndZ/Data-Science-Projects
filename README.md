@@ -35,96 +35,23 @@
   </a>
 </p>
 
-# 👨‍💻 Mr. Joshua's Data Science Portfolio
+# Data Science Projects
 
-Welcome to my data science project portfolio!  
-This repository contains a collection of projects showcasing my work in data analytics, machine learning, and data engineering.  
-Each project demonstrates full end‑to‑end development — from data collection, cleaning, and modeling, to visualization and deployment.
+This repository contains the source code for my data science projects and my personal portfolio website.
 
----
+## 🚀 View My Live Portfolio
 
-## 📁 Projects
+You can view my full, interactive portfolio here:
 
-| Project Name | Description | Key Skills & Tools |
-|---------------|-------------|--------------------|
-| <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/nltk_sentiment_analyzer" target="_blank"><b>NLTK Sentiment Analyzer</b></a> | Developed a sentiment analysis tool using NLTK's VADER to classify text as positive, negative, or neutral. Includes text preprocessing and visualization of results. | Python, NLTK (VADER), Pandas, Natural Language Processing |
-| <a href="https://gift3dmyndz.github.io/Data-Science-Projects/dashboard.html" target="_blank"><b>Automated Weather ETL Pipeline</b></a> | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs |
-| <a href="https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/stock_price_prediction_lstm" target="_blank"><b>Stock Price Prediction (LSTM)</b></a> | Leveraged a Long Short‑Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis |
+### [https://gift3dmyndz.github.io/Data-Science-Projects/](https://gift3dmyndz.github.io/Data-Science-Projects/)
 
 ---
 
-## 🧠 About Me
-I’m **Josh** — a passionate data scientist and problem solver.  
-My mission is to transform complex data into actionable insights through machine learning, analytics, and automation.  
-Always learning, experimenting, and sharing knowledge.
+## About This Repository
 
----
-
-## 📊 Key Focus Areas
-- Machine Learning (Supervised & Unsupervised,)
+This repository includes projects in:
 - Natural Language Processing (NLP)
-- Deep Learning & Time Series Forecasting
-- Data Engineering (ETL Pipelines, Automation)
-- Data Visualization & Insights Communication
-- Model Deployment and Reproducibility
+- Time Series Forecasting with Deep Learning
+- Automated ETL Pipelines
 
----
-
-## 🧰 Tools & Skills at a Glance
-
-### 💻 Languages
-- Python  
-- SQL  
-- Markdown / YAML
-
-### 🧮 Libraries & Frameworks
--   Machine Learning / Deep Learning:** TensorFlow, Keras, Scikit-learn
--   Natural Language Processing (NLP):** NLTK
--   Data Analysis:** Pandas, NumPy
--   Data Visualization:** Matplotlib, Seaborn
--   Data Acquisition:** yFinance, Requests
--   Model Deployment / Automation:** Streamlit (planned), GitHub Codespaces
-
-### 🧱 Databases & Data Engineering
-- SQL (PostgreSQL, SQLite)  
-- SQLAlchemy (ORM)  
-- ETL Pipelines  
-- RESTful APIs  
-- Data Preprocessing & Scaling  
-- Feature Engineering
-
-### 🧰 Tools & Platforms
-- Git & GitHub  
-- GitHub Codespaces  
-- Jupyter Notebooks  
-- Visual Studio Code  
-- Google Colab  
-- Render / Hugging Face *(for deployment)*  
-- Docker *(planned)*
-
----
-
-## 📚 Learning Highlights
-- Developing end‑to‑end ML systems (from ingestion → model → visualization)  
-- Developing end-to-end ML systems (from ingestion -> model -> visualization)
-- Implementing NLP models for tasks like sentiment analysis using NLTK.
-- Understanding time series forecasting with LSTM
-- Building reusable ETL data pipelines
-- Version control and collaborative workflow using GitHub Codespaces
-
-
----
-
-## 📬 Contact
-
-📧 **Email:** hunterwolfej@icloud.com  
-🌐 **LinkedIn:** [www.linkedin.com/in/mrjoshuawolfe](https://www.linkedin.com/in/mrjoshuawolfe)
-
----
-
-<p align="center">
-  <em>© 2025 Mr. Joshua Wolfe — Data Science Portfolio</em><br>
-  <a href="https://www.linkedin.com/in/mrjoshuawolfe" target="_blank">🌐 LinkedIn</a> | 
-  <a href="mailto:hunterwolfej@icloud.com">📧 Email</a> | 
-  <a href="https://github.com/Gift3dMyndZ">💻 GitHub</a>
-</p>
+Feel free to explore the project folders to see the underlying code.
