@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. Joshua's Data Science Portfolio</title>
     <style>
-        /* --- Global Styles & Color Palette (Light Theme) --- */
+        /* --- Global Styles & Color Palette (Merged) --- */
         :root {
-            --bg-body: #0c0c1d; /* Dark navy blue for the stellar background */
-            --bg-content-container: rgba(255, 255, 255, 0.95); /* Semi-transparent white for frosted glass effect */
-            --bg-card: rgba(255, 255, 255, 1); /* Opaque white for cards */
-            --bg-tag: #e9f4ff; /* Light blue for skill tags */
+            --bg-body: #0c0c1d;
+            --bg-content-container: rgba(255, 255, 255, 0.95);
+            --bg-card: #FFFFFF;
             --border-color: #e0e0e0;
-            --text-primary: #212529; /* Very dark gray for main text */
-            --text-secondary: #5a5a5a; /* Lighter gray for subtext */
-            --accent-color: #007BFF; /* Professional blue for links and highlights */
+            --shadow-color: rgba(0, 0, 0, 0.12);
+            --text-primary: #212529;
+            --text-secondary: #5a5a5a;
+            --accent-color: #007BFF;
+            --tag-bg: #e9f4ff;
+            --tag-text: #007BFF;
             --header-font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -26,25 +28,23 @@
             margin: 0;
             padding: 40px 20px;
             box-sizing: border-box;
+            line-height: 1.7;
         }
 
-        /* --- Dynamic Canvas Background --- */
         #background-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Places the canvas behind all other content */
+            z-index: -1;
         }
 
-        /* --- Main Content Container --- */
         .container {
-            width: 100%;
-            max-width: 1400px; /* Increased max-width for grid layout */
+            max-width: 1100px;
             margin: 0 auto;
             background-color: var(--bg-content-container);
-            backdrop-filter: blur(10px); /* Creates the frosted glass effect */
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
@@ -52,55 +52,55 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- Header / Hero Section --- */
+        /* --- Header --- */
         header {
             text-align: center;
             padding: 40px 20px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             border-radius: 12px;
             background: linear-gradient(135deg, rgba(0, 123, 255, 0.05), rgba(0, 123, 255, 0));
             border: 1px solid var(--border-color);
         }
-
         header h1 {
-            font-size: 2.5rem;
-            margin: 0 0 15px 0;
-            border-bottom: none;
+            font-size: 2.8rem;
+            font-family: var(--header-font);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             color: #000;
         }
-        
         header p {
-            max-width: 800px;
-            margin: 0 auto;
             font-size: 1.2rem;
-            line-height: 1.7;
             color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* --- Main Grid Layout for Cards --- */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        /* --- General Section Styling --- */
+        .section {
+            margin-bottom: 60px;
         }
-
-        /* --- General Section & Card Styling --- */
-        .grid-section {
-            grid-column: 1 / -1; /* Make section titles span full width */
-        }
-
-        .grid-section h2 {
+        .section-title {
             font-family: var(--header-font);
             font-size: 2rem;
-            font-weight: 700;
             color: #000;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 15px;
-            margin-top: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        .content-card {
+        /* --- Card Styling --- */
+        .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -109,132 +109,139 @@
             display: flex;
             flex-direction: column;
         }
-
-        .content-card:hover {
+        .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 28px var(--shadow-color);
             border-color: var(--accent-color);
         }
-
-        .content-card h3 {
+        .card h3 {
+            font-family: var(--header-font);
             font-size: 1.5rem;
-            color: var(--text-primary);
             margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        /* --- Typography within Cards --- */
-        .content-card p {
-            line-height: 1.7;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            flex-grow: 1; /* Allows description to take up space */
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-
-        .content-card a {
+        .card ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .card ul li::before {
+            content: '»';
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        .card a {
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
         }
-
-        .content-card a:hover {
-            color: #0056b3;
+        .card a:hover {
             text-decoration: underline;
         }
 
-        .content-card ul { list-style-type: none; padding: 0; margin: 0; }
-        .content-card li {
-            margin-bottom: 12px;
-            line-height: 1.6;
-            position: relative;
-            padding-left: 25px;
-            font-size: 1.1rem;
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
-        .content-card li::before {
-            content: '»';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-        
-        /* --- Project Card Specifics --- */
         .project-card {
-            /* Inherits from .content-card */
+            flex-grow: 1;
         }
-
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
         .project-card h3 a {
             color: var(--text-primary);
             text-decoration: none;
         }
         .project-card h3 a:hover {
             color: var(--accent-color);
-            text-decoration: none;
         }
-
+        .project-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            flex-grow: 1; /* Pushes tags to the bottom */
+        }
         .skill-tags {
             margin-top: 20px;
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-
         .skill-tag {
-            background-color: var(--bg-tag);
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            border: 1px solid var(--tag-text);
             padding: 5px 12px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
         }
 
-        /* --- Skills Section (already card-based) --- */
-        .skill-card h3 { font-size: 1.5rem; }
-        .skill-card ul { padding: 0; margin: 0; }
-        .skill-card li { font-size: 1rem; }
-        .skill-card strong {
-            color: var(--text-primary);
-            font-weight: 700;
-            display: block;
-            margin-top: 20px;
-            margin-bottom: 5px;
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
-
+        .skill-card h4 {
+            font-family: var(--header-font);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .skill-card h4:first-of-type {
+            margin-top: 0;
+        }
+        
         /* --- Footer --- */
-        footer {
+        .portfolio-footer {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 60px;
             padding-top: 30px;
             border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
             color: var(--text-secondary);
+            font-size: 0.9rem;
         }
-        footer a { margin: 0 10px; }
+        .portfolio-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+        }
+        .portfolio-footer a:hover {
+            text-decoration: underline;
+        }
 
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
-            .main-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            .section-grid-2, .projects-grid, .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
-
         @media (max-width: 768px) {
             body { padding: 20px 10px; }
-            .container { padding: 20px; }
-            header h1 { font-size: 2rem; }
-            header p { font-size: 1.1rem; }
-            .grid-section h2 { font-size: 1.6rem; }
-            .content-card { padding: 25px; }
-            .content-card p, .content-card li { font-size: 1rem; }
+            .container { padding: 25px; }
+            header h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-
     <canvas id="background-canvas"></canvas>
 
     <div class="container">
@@ -243,147 +250,145 @@
             <p>Welcome! This portfolio is a curated collection of my work in data analytics, machine learning, and data engineering, demonstrating full end-to-end project development.</p>
         </header>
 
-        <div class="main-grid">
-
-            <!-- About Me Section -->
-            <section class="grid-section" id="about-me">
-                <h2>🧠 About Me</h2>
+        <main>
+            <!-- About Me & Key Focus Section -->
+            <section class="section">
+                <div class="section-grid-2">
+                    <div class="about-me">
+                        <h2 class="section-title">🧠 About Me</h2>
+                        <p>I'm Josh — a passionate data scientist and problem solver. My mission is to transform complex data into actionable insights through machine learning, analytics, and automation. Always learning, experimenting, and sharing knowledge.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎯 Key Focus Areas</h3>
+                        <ul>
+                            <li>Machine Learning (Supervised & Unsupervised)</li>
+                            <li>Natural Language Processing (NLP)</li>
+                            <li>Deep Learning & Time Series Forecasting</li>
+                            <li>Data Engineering (ETL Pipelines, Automation)</li>
+                            <li>Data Visualization & Insights Communication</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
-            <div class="content-card">
-                <!-- H3 removed for better hierarchy -->
-                <p>I'm Josh — a passionate data scientist and problem solver. My mission is to transform complex data into actionable insights through machine learning, analytics, and automation. Always learning, experimenting, and sharing knowledge.</p>
-            </div>
-
-            <div class="content-card">
-                <h3>🎯 Key Focus Areas</h3>
-                <ul>
-                    <li>Machine Learning (Supervised & Unsupervised)</li>
-                    <li>Natural Language Processing (NLP)</li>
-                    <li>Deep Learning & Time Series Forecasting</li>
-                    <li>Data Engineering (ETL Pipelines, Automation)</li>
-                    <li>Data Visualization & Insights Communication</li>
-                </ul>
-            </div>
-            
             <!-- Projects Section -->
-            <section class="grid-section" id="projects">
-                <h2>📁 Projects</h2>
+            <section class="section">
+                <h2 class="section-title">📂 Projects</h2>
+                <div class="projects-grid">
+                    <!-- Project 1: Team Dashboard -->
+                    <div class="card project-card">
+                        <h3><a href="projects/team_dashboard/index.html">Engineering Team Time Analysis Dashboard</a></h3>
+                        <p>An interactive dashboard built with pure HTML, CSS, and JS to analyze an engineering team's time logs, featuring KPIs and dynamic SVG charts.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Data Viz</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: NLTK Sentiment Analyzer -->
+                    <div class="card project-card">
+                        <h3><a href="projects/sentiment_analyzer/index.html">NLTK Sentiment Analyzer</a></h3>
+                        <p>Developed a sentiment analysis tool using NLTK's VADER to classify text as positive, negative, or neutral. Includes text preprocessing and visualization of results.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">NLTK</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Weather ETL -->
+                    <div class="card project-card">
+                        <h3><a href="projects/weather_etl/index.html">Automated Weather ETL Pipeline</a></h3>
+                        <p>Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">REST APIs</span>
+                            <span class="skill-tag">ETL</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Stock Prediction -->
+                    <div class="card project-card">
+                        <h3><a href="projects/stock_prediction/index.html">Stock Price Prediction (LSTM)</a></h3>
+                        <p>Leveraged a Long Short-Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data.</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Keras</span>
+                            <span class="skill-tag">Time Series</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                        </div>
+                    </div>
+                </div>
             </section>
-
-            <!-- Project 0: Dashboard -->
-            <div class="content-card project-card">
-                <h3><a href="dashboard.html">Engineering Team Time Analysis Dashboard</a></h3>
-                <p>An interactive dashboard built with pure HTML, CSS, and JS to analyze an engineering team's time logs, featuring KPIs and dynamic SVG charts.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Data Viz</span>
-                </div>
-            </div>
-
-            <!-- Project 1: Link updated -->
-            <div class="content-card project-card">
-                <h3><a href="projects/nltk-sentiment-analyzer/index.html">NLTK Sentiment Analyzer</a></h3>
-                <p>Developed a sentiment analysis tool using NLTK's VADER to classify text as positive, negative, or neutral. Includes text preprocessing and visualization of results.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">NLTK</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NLP</span>
-                </div>
-            </div>
-
-            <!-- Project 2: Link updated -->
-            <div class="content-card project-card">
-                <h3><a href="projects/automated-weather-etl/index.html">Automated Weather ETL Pipeline</a></h3>
-                <p>Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">REST APIs</span>
-                    <span class="skill-tag">ETL</span>
-                </div>
-            </div>
-
-            <!-- Project 3: Link updated -->
-            <div class="content-card project-card">
-                <h3><a href="projects/stock-price-prediction-lstm/index.html">Stock Price Prediction (LSTM)</a></h3>
-                <p>Leveraged a Long Short-Term Memory (LSTM) model to forecast stock price trends from historical Yahoo Finance data.</p>
-                <div class="skill-tags">
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">Keras</span>
-                    <span class="skill-tag">Time Series</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                </div>
-            </div>
 
             <!-- Tools & Skills Section -->
-            <section class="grid-section" id="tools-skills">
-                <h2>🧰 Tools & Skills at a Glance</h2>
+            <section class="section">
+                <h2 class="section-title">🛠️ Tools & Skills at a Glance</h2>
+                <div class="skills-grid">
+                    <div class="card skill-card">
+                        <h3>🖥️ Languages</h3>
+                        <ul>
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>Markdown / YAML</li>
+                        </ul>
+                    </div>
+                    <div class="card skill-card">
+                        <h3>📚 Libraries & Frameworks</h3>
+                        <h4>Machine Learning / Deep Learning:</h4>
+                        <ul>
+                            <li>TensorFlow, Keras, Scikit-learn</li>
+                        </ul>
+                        <h4>Natural Language Processing (NLP):</h4>
+                        <ul>
+                            <li>NLTK</li>
+                        </ul>
+                        <h4>Data Analysis & Visualization:</h4>
+                        <ul>
+                            <li>Pandas, NumPy, Matplotlib, Seaborn</li>
+                        </ul>
+                    </div>
+                    <div class="card skill-card">
+                        <h3>⚙️ Data Engineering</h3>
+                        <ul>
+                            <li>SQL (PostgreSQL, SQLite)</li>
+                            <li>SQLAlchemy (ORM)</li>
+                            <li>ETL Pipelines & RESTful APIs</li>
+                            <li>Data Preprocessing & Scaling</li>
+                            <li>Feature Engineering</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
-
-            <div class="content-card skill-card">
-                <h3>💻 Languages</h3>
-                <ul>
-                    <li>Python</li>
-                    <li>SQL</li>
-                    <li>Markdown / YAML</li>
-                </ul>
-            </div>
-
-            <div class="content-card skill-card">
-                <h3>📚 Libraries & Frameworks</h3>
-                <ul>
-                    <strong>Machine Learning / Deep Learning:</strong>
-                    <li>TensorFlow, Keras, Scikit-learn</li>
-                    <strong>Natural Language Processing (NLP):</strong>
-                    <li>NLTK</li>
-                    <strong>Data Analysis & Visualization:</strong>
-                    <li>Pandas, NumPy, Matplotlib, Seaborn</li>
-                </ul>
-            </div>
-
-            <div class="content-card skill-card">
-                <h3>🗄️ Data Engineering</h3>
-                <ul>
-                    <li>SQL (PostgreSQL, SQLite)</li>
-                    <li>SQLAlchemy (ORM)</li>
-                    <li>ETL Pipelines & RESTful APIs</li>
-                    <li>Data Preprocessing & Scaling</li>
-                    <li>Feature Engineering</li>
-                </ul>
-            </div>
 
             <!-- Contact Section -->
-            <section class="grid-section" id="contact">
-                <h2>📬 Contact</h2>
+            <section class="section">
+                <h2 class="section-title">📧 Contact</h2>
+                <div class="card">
+                     <ul>
+                        <li>Email: <a href="mailto:hunterwolfej@icloud.com">hunterwolfej@icloud.com</a></li>
+                        <li>LinkedIn: <a href="https://linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">linkedin.com/in/mrjoshuawolfe</a></li>
+                    </ul>
+                </div>
             </section>
+        </main>
 
-            <div class="content-card">
-                <!-- H3 removed for better hierarchy -->
-                <ul>
-                    <li><strong>Email:</strong> <a href="mailto:hunterwolfej@icloud.com">hunterwolfej@icloud.com</a></li>
-                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">linkedin.com/in/mrjoshuawolfe</a></li>
-                </ul>
-            </div>
-            
-        </div>
-
-        <footer>
+        <footer class="portfolio-footer">
             <p>&copy; 2025 Mr. Joshua Wolfe — Data Science Portfolio</p>
             <p>
-                <a href="https://www.linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                <a href="https://linkedin.com/in/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
                 <a href="mailto:hunterwolfej@icloud.com">Email</a> |
                 <a href="https://github.com/mrjoshuawolfe" target="_blank" rel="noopener noreferrer">GitHub</a>
             </p>
         </footer>
     </div>
 
+    <!-- Background Animation Script - Full version for consistency -->
     <script>
-        // --- JavaScript for Dynamic Canvas Background ---
-
         const canvas = document.getElementById('background-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -476,6 +481,5 @@
         init();
         animate();
     </script>
-
 </body>
 </html>

@@ -129,7 +129,7 @@
         <h1>Weather Data ETL Pipeline</h1>
 
         <p>
-            This project is an automated ETL (Extract, Transform, Load) pipeline built in Python. It fetches real-time weather data for a predefined list of cities from the OpenWeatherMap API, cleans and structures the data, and then loads it into a PostgreSQL database for storage and future analysis.
+            This project is an automated ETL (Extract, Transform, Load) pipeline built in Python. It fetches real-time weather data for a predefined list of cities from the OpenWeatherMap API, cleans and structures the data, and then loads it into a <strong>SQLite</strong> database for storage and future analysis.
         </p>
 
         <!-- Project Overview Section -->
@@ -138,7 +138,7 @@
         <ol>
             <li><strong>Extract:</strong> The script sends GET requests to the OpenWeatherMap API to retrieve current weather data for several major cities. API keys and other configurations are securely managed using environment variables.</li>
             <li><strong>Transform:</strong> The raw JSON responses from the API are parsed. Relevant fields like temperature, humidity, wind speed, and weather conditions are selected. Data is cleaned by converting temperature from Kelvin to Celsius and structuring it into a clean, tabular format using the Pandas library.</li>
-            <li><strong>Load:</strong> A connection is established to a PostgreSQL database using SQLAlchemy. The transformed data, now in a Pandas DataFrame, is efficiently loaded into a dedicated `weather_data` table. The script handles table creation if it doesn't already exist.</li>
+            <li><strong>Load:</strong> A connection is established to a <strong>SQLite</strong> database using SQLAlchemy. The transformed data, now in a Pandas DataFrame, is efficiently loaded into a dedicated `weather_data` table. The script handles table creation if it doesn't already exist.</li>
             <li><strong>Logging:</strong> The script provides informative log messages throughout the process, indicating its progress, successful operations, and any potential errors.</li>
         </ol>
 
@@ -149,31 +149,27 @@
             <li>Pandas (for data transformation)</li>
             <li>Requests (for API communication)</li>
             <li>SQLAlchemy (for database abstraction)</li>
-            <li>Psycopg2 (PostgreSQL adapter for Python)</li>
+            <li><strong>SQLite</strong> (via Python's built-in `sqlite3` module)</li>
             <li>python-dotenv (for managing environment variables)</li>
         </ul>
 
         <!-- How to Run Section -->
         <h2>How to Run</h2>
-        <p>1. First, clone the repository and navigate to the project directory:</p>
-        <pre><code>cd weather-etl-pipeline</code></pre>
+        <p>1. First, clone the repository and navigate to the project directory from the repository root:</p>
+        <pre><code>cd projects/weather_etl</code></pre>
 
-        <p>2. Create a <code>.env</code> file in the root of the directory to store your credentials. You will need a free API key from <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a> and your PostgreSQL connection details.</p>
+        <p>2. Create a <code>.env</code> file in this directory to store your credentials. You will need a free API key from <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a>. The database path is also set here.</p>
         <pre><code># .env file
 API_KEY='your_openweathermap_api_key'
-DB_USER='your_db_user'
-DB_PASSWORD='your_db_password'
-DB_HOST='localhost'
-DB_PORT='5432'
-DB_NAME='your_db_name'
+DATABASE_URL='sqlite:///weather_data.db'
 </code></pre>
 
         <p>3. Install the required Python packages:</p>
         <pre><code>pip install -r requirements.txt</code></pre>
 
         <p>4. Run the ETL script:</p>
-        <pre><code>python main_etl.py</code></pre>
-        <p><em>The script will execute the pipeline and load the latest weather data into your specified database.</em></p>
+        <pre><code>python weather_etl.py</code></pre>
+        <p><em>The script will execute the pipeline and load the latest weather data into the `weather_data.db` file in the same directory.</em></p>
 
         <!-- Sample Output Section -->
         <h2>Sample Output</h2>
@@ -187,26 +183,108 @@ INFO:root:Fetching data for Sydney, AU...
 INFO:root:All data fetched successfully.
 INFO:root:Transforming data...
 INFO:root:Data transformation complete.
-INFO:root:Loading data into PostgreSQL database...
+INFO:root:Loading data into SQLite database...
 INFO:root:Data loaded successfully. 4 rows inserted into weather_data.
 INFO:root:ETL process finished.
         </code></pre>
 
     </div>
 
-    <!-- The same background script from your main page -->
+    <!-- The same background script from your main page - NOW CORRECTED -->
     <script>
+        // --- JavaScript for Dynamic Canvas Background ---
+
         const canvas = document.getElementById('background-canvas');
         const ctx = canvas.getContext('2d');
+
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
         let particlesArray;
-        class Particle{ constructor(x,y,dX,dY,s,c){this.x=x;this.y=y;this.directionX=dX;this.directionY=dY;this.size=s;this.color=c;} draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2,false);ctx.fillStyle='rgba(173, 216, 230, 0.5)';ctx.fill();} update(){if(this.x>canvas.width||this.x<0){this.directionX=-this.directionX;} if(this.y>canvas.height||this.y<0){this.directionY=-this.directionY;} this.x+=this.directionX;this.y+=this.directionY;this.draw();}}
-        function init(){particlesArray=[];let n=(canvas.height*canvas.width)/9e3;for(let i=0;i<n;i++){let s=(Math.random()*2)+1,x=Math.random()*(innerWidth-s*2-s*2)+s*2,y=Math.random()*(innerHeight-s*2-s*2)+s*2,dX=(Math.random()*.4)-.2,dY=(Math.random()*.4)-.2;particlesArray.push(new Particle(x,y,dX,dY,s,'rgba(173, 216, 230, 0.5)'));}}
-        function connect(){let o=1;for(let a=0;a<particlesArray.length;a++){for(let b=a;b<particlesArray.length;b++){let d=((particlesArray[a].x-particlesArray[b].x)*(particlesArray[a].x-particlesArray[b].x))+((particlesArray[a].y-particlesArray[b].y)*(particlesArray[a].y-particlesArray[b].y));if(d<(canvas.width/7)*(canvas.height/7)){o=1-(d/2e4);ctx.strokeStyle=`rgba(173, 216, 230, ${o})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(particlesArray[a].x,particlesArray[a].y);ctx.lineTo(particlesArray[b].x,particlesArray[b].y);ctx.stroke();}}}}
-        function animate(){requestAnimationFrame(animate);ctx.clearRect(0,0,innerWidth,innerHeight);for(let i=0;i<particlesArray.length;i++){particlesArray[i].update();} connect();}
-        window.addEventListener('resize',()=>{canvas.width=innerWidth;canvas.height=innerHeight;init();});
-        init();animate();
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(173, 216, 230, 0.5)';
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(173, 216, 230, 0.5)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = `rgba(173, 216, 230, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
+        });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
