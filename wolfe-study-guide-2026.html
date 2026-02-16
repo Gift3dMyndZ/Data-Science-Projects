@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolfe Publications Study Guide 2026</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Orbitron', sans-serif;
+        background: black;
+        overflow-x: hidden;
+        color: white;
+    }
+
+    /* Animated Cyberpunk Gradient Background */
+    body::before {
+        content: "";
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffee, #ff0099);
+        background-size: 400% 400%;
+        animation: gradientMove 15s ease infinite;
+        z-index: -2;
+        opacity: 0.25;
+    }
+
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Animated Cyber Grid */
+    .grid-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: gridMove 10s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes gridMove {
+        from { background-position: 0 0; }
+        to { background-position: 0 40px; }
+    }
+
+    /* Neon Card Style */
+    .cyber-card {
+        background: rgba(0,0,0,0.7);
+        border: 1px solid #00ffee;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+    }
+
+    .cyber-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 0 20px #00ffee, 0 0 40px #ff00cc;
+        border-color: #ff00cc;
+    }
+
+    .neon-title {
+        text-shadow: 0 0 10px #00ffee, 0 0 20px #ff00cc;
+    }
+
+    .neon-sub {
+        color: #00ffee;
+        letter-spacing: 4px;
+    }
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<div class="min-h-screen flex flex-col items-center px-6 py-16">
+
+    <h1 class="text-4xl md:text-6xl font-bold text-center neon-title mb-4">
+        WOLFE PUBLICATIONS
+    </h1>
+
+    <h2 class="text-xl md:text-2xl neon-sub mb-12">
+        STUDY GUIDE • 2026 EDITION
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-6xl w-full">
+
+        <div class="cyber-card p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-4 text-cyan-300">Strategy</h3>
+            <ul class="space-y-2 text-gray-300">
+                <li>Business alignment</li>
+                <li>Compliance & privacy</li>
+                <li>Data principles</li>
+                <li>Technology strategy</li>
+                <li>Enterprise architecture</li>
+            </ul>
+        </div>
+
+        <div class="cyber-card p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-4 text-pink-400">Definition</h3>
+            <ul class="space-y-2 text-gray-300">
+                <li>DG assessment</li>
+                <li>Policies & standards</li>
+                <li>Risk management</li>
+                <li>Data classification</li>
+                <li>Lifecycle management</li>
+            </ul>
+        </div>
+
+        <div class="cyber-card p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-4 text-cyan-300">Management</h3>
+            <ul class="space-y-2 text-gray-300">
+                <li>Policy management</li>
+                <li>Data standards</li>
+                <li>Issue tracking</li>
+                <li>Risk oversight</li>
+                <li>Audit controls</li>
+            </ul>
+        </div>
+
+        <div class="cyber-card p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-4 text-pink-400">Technology</h3>
+            <ul class="space-y-2 text-gray-300">
+                <li>Metadata management</li>
+                <li>Data quality</li>
+                <li>Data modeling</li>
+                <li>DBMS</li>
+                <li>Stewardship</li>
+            </ul>
+        </div>
+
+        <div class="cyber-card p-6 rounded-lg md:col-span-2">
+            <h3 class="text-2xl font-bold mb-4 text-cyan-300">Sustaining Governance</h3>
+            <ul class="grid md:grid-cols-2 gap-2 text-gray-300">
+                <li>Leadership alignment</li>
+                <li>Change management</li>
+                <li>Stakeholder engagement</li>
+                <li>Training programs</li>
+                <li>Performance metrics</li>
+                <li>Community development</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer class="mt-16 text-sm tracking-widest text-gray-400">
+        © 2026 Wolfe Publications • Cyber Intelligence Division
+    </footer>
+
+</div>
+
+</body>
+</html>
