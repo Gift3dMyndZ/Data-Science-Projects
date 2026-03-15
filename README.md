@@ -1,20 +1,14 @@
 # Mr. Joshua's Data Science Portfolio
 
 <p align="center">
-HEAD
-  <img src="https://github.com/Gift3dMyndZ/Data-Science-Projects/blob/main/banner.png?raw=true"
-       alt="Mr. Joshua’s Data Science Portfolio" width="100%">
-
-<img src="banner.png" alt="Data Science Portfolio Banner" width="800"/>
-eab3f7d6642009374abdc12b57c76cd551838155
+  <img src="banner.png" alt="Mr. Joshua's Data Science Portfolio" width="800"/>
 </p>
 
 <p align="center">
-  <em>Turning Data Into Insight — Machine Learning • Time Series • Visualization</em>
+  <em>Turning Data Into Insight • Machine Learning • Time Series • Visualization</em>
 </p>
 
 <p align="center">
- HEAD
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
   <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white">
   <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white">
@@ -24,8 +18,8 @@ eab3f7d6642009374abdc12b57c76cd551838155
 </p>
 
 <p align="center">
-  <a href="https://gift3dmyndz.github.io/Data-Science-Projects/dashboard.html" target="_blank">
-    <img src="https://img.shields.io/badge/📊%20View%20Live%20Dashboard-0078D4?style=for-the-badge" />
+<a href="https://gift3dmyndz.github.io/Data-Science-Projects/projects/dashboard.html" target="_blank">
+    <img src="https://img.shields.io/badge/View%20Live%20Dashboard-0078D4?style=for-the-badge">
   </a>
 </p>
 
