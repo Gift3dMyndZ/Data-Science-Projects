@@ -18,6 +18,7 @@
 </p>
 
 <p align="center">
+<a href="https://gift3dmyndz.github.io/Data-Science-Projects/projects/dashboard.html" target="_blank">
   <em>© 2025 Mr. Joshua — Data Science Portfolio</em><br>
   <a href="https://www.linkedin.com/in/your-profile/" target="_blank">LinkedIn</a> |
   <a href="mailto:youremail@example.com">Email</a> |
