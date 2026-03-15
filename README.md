@@ -18,8 +18,13 @@
 </p>
 
 <p align="center">
-<a href="https://gift3dmyndz.github.io/Data-Science-Projects/projects/dashboard.html" target="_blank">
-    <img src="https://img.shields.io/badge/View%20Live%20Dashboard-0078D4?style=for-the-badge">
+  <em>© 2025 Mr. Joshua — Data Science Portfolio</em><br>
+  <a href="https://www.linkedin.com/in/your-profile/" target="_blank">LinkedIn</a> |
+  <a href="mailto:youremail@example.com">Email</a> |
+  <a href="https://github.com/Gift3dMyndZ">GitHub</a>
+</p>
+  <a href="https://gift3dmyndz.github.io/Data-Science-Projects/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀-View_Live_Portfolio-blue.svg?style=for-the-badge" alt="View Live Portfolio">
   </a>
 </p>
 
@@ -74,7 +79,6 @@ Always learning, experimenting, and sharing knowledge.
   <a href="mailto:youremail@example.com">Email</a> |
   <a href="https://github.com/Gift3dMyndZ">GitHub</a>
 </p>
-=======
   <a href="https://gift3dmyndz.github.io/Data-Science-Projects/" target="_blank">
     <img src="https://img.shields.io/badge/🚀-View_Live_Portfolio-blue.svg?style=for-the-badge" alt="View Live Portfolio">
   </a>
@@ -120,4 +124,4 @@ A quick look at the technologies I use across these projects.
 ---
 
 Feel free to explore the project folders to see the underlying code. If you have any questions, don't hesitate to reach out!
->>>>>>> eab3f7d6642009374abdc12b57c76cd551838155
+
