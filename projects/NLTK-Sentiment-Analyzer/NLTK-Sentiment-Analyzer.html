@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: NLTK Sentiment Analyzer</title>
+    <style>
+        /* Using the same styles as your main portfolio for consistency */
+        :root {
+            --bg-body: #0c0c1d;
+            --bg-content-container: rgba(255, 255, 255, 0.95);
+            --border-color: #e0e0e0;
+            --text-primary: #212529;
+            --text-secondary: #5a5a5a;
+            --accent-color: #007BFF;
+            --code-bg: #f8f9fa;
+            --header-font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            line-height: 1.7;
+        }
+
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px; /* A bit narrower for a project page */
+            margin: 0 auto;
+            background-color: var(--bg-content-container);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: #000;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+        }
+
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p, li {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        /* Code block styling */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            white-space: pre-wrap; /* Wraps long lines of code */
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+        code {
+             background-color: var(--code-bg);
+             padding: 2px 6px;
+             border-radius: 4px;
+             font-family: 'Courier New', Courier, monospace;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 20px 10px; }
+            .container { padding: 25px; }
+            h1 { font-size: 2rem; }
+            p, li { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <div class="container">
+        
+        <!-- Link to go back to the main portfolio. The path ../../ is correct. -->
+        <a href="../../index.html" class="back-link">← Back to Main Portfolio</a>
+
+        <!-- CUSTOMIZE: Project Title -->
+        <h1>NLTK Sentiment Analyzer</h1>
+
+        <p>
+            This project is a simple but effective sentiment analysis tool built using Python and the Natural Language Toolkit (NLTK). It's trained on a dataset of movie reviews to classify a piece of text as either "Positive" or "Negative".
+        </p>
+
+        <!-- CUSTOMIZE: Project Overview Section -->
+        <h2>Project Overview</h2>
+        <p>The script performs the following steps:</p>
+        <ol>
+            <li><strong>Loads Data:</strong> It uses the <code>movie_reviews</code> corpus included with NLTK.</li>
+            <li><strong>Text Preprocessing:</strong> Cleans text by tokenizing, converting to lowercase, and removing stopwords and punctuation.</li>
+            <li><strong>Feature Extraction:</strong> Uses a "Bag of Words" approach based on the 3,000 most frequent words.</li>
+            <li><strong>Model Training:</strong> A Naive Bayes classifier is trained on 95% of the dataset.</li>
+            <li><strong>Evaluation:</strong> The model is evaluated on the remaining data to check its accuracy.</li>
+            <li><strong>Prediction:</strong> A function is provided to predict the sentiment of any new sentence.</li>
+        </ol>
+
+        <!-- CUSTOMIZE: Technologies Section -->
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Python 3</li>
+            <li>NLTK (Natural Language Toolkit)</li>
+            <li>Pandas</li>
+            <li>Scikit-learn</li>
+        </ul>
+
+        <!-- CUSTOMIZE: How to Run Section -->
+        <h2>How to Run</h2>
+        <p>1. Navigate to the project directory:</p>
+        <pre><code>cd NLTK-Sentiment-Analyzer</code></pre>
+
+        <p>2. Install dependencies:</p>
+        <pre><code>pip install -r requirements.txt</code></pre>
+
+        <p>3. Run the script:</p>
+        <pre><code>python sentiment_analyzer.py</code></pre>
+        <p><em>The first time you run the script, it will automatically download the necessary NLTK data packages.</em></p>
+
+        <!-- CUSTOMIZE: Sample Output Section (Optional) -->
+        <h2>Sample Output</h2>
+        <pre><code>
+Accuracy: 85.0%
+
+---
+Sentence: "This movie was absolutely fantastic! The acting was superb."
+Sentiment: Positive
+---
+Sentence: "I did not like the film. It was boring and slow."
+Sentiment: Negative
+        </code></pre>
+
+    </div>
+
+    <!-- Background Animation Script - Full version for consistency -->
+    <script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(173, 216, 230, 0.5)';
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(173, 216, 230, 0.5)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = `rgba(173, 216, 230, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
