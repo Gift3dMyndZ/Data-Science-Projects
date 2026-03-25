@@ -42,13 +42,11 @@
 <p align="center">
 <a href="https://gift3dmyndz.github.io/Data-Science-Projects/projects/dashboard.html" target="_blank">
 
-  <a href="https://www.linkedin.com/in/your-profile/" target="_blank">LinkedIn</a> |
-  <a href="mailto:youremail@example.com">Email</a> |
-  <a href="https://github.com/Gift3dMyndZ">GitHub</a>
-</p>
-  <a href="https://gift3dmyndz.github.io/Data-Science-Projects/" target="_blank">
-    <img src="https://img.shields.io/badge/🚀-View_Live_Portfolio-blue.svg?style=for-the-badge" alt="View Live Portfolio">
+<p align="center">
+  <a href="https://gift3dmyndz.github.io/Data-Science-Projects/">
+    <img src="https://img.shields.io/badge/🚀_View_Live_Portfolio-blue?style=for-the-badge" alt="View Live Portfolio"/>
   </a>
+</p>
 </p>
 
 # 👨‍💻 Mr. Joshua's Data Science Portfolio
