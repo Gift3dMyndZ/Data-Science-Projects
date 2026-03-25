@@ -1,3 +1,5 @@
+<div align="center">
+
 # Mr. Joshua's Data Science Portfolio
 
 <p align="center">
@@ -76,13 +78,13 @@ The labyrinth watches. It learns. It adapts.
 ---
 
 ## 📊 Key Focus Areas
-- Game Development & Real-Time Systems
-- Adaptive AI & Reinforcement Feedback Loops
-- Machine Learning (Supervised & Unsupervised)
-- Deep Learning & Time Series Forecasting
-- Data Engineering (ETL Pipelines, Automation)
-- Data Visualization & Storytelling
-- Model Deployment and Reproducibility
+Game Development & Real-Time Systems
+Adaptive AI & Reinforcement Feedback Loops
+Machine Learning (Supervised & Unsupervised)
+Deep Learning & Time Series Forecasting
+Data Engineering (ETL Pipelines, Automation)
+Data Visualization & Storytelling
+ Model Deployment and Reproducibility
 
 ---
 
@@ -94,10 +96,10 @@ Always learning, experimenting, and sharing knowledge.
 ---
 
 ## 🧰 Tech Stack
-- **Languages:** Python, SQL, JavaScript  
-- **Libraries:** pandas, numpy, scikit‑learn, TensorFlow, Keras, matplotlib, seaborn  
-- **Tools:** Jupyter, VS Code, GitHub Actions, Docker  
-- **Cloud & Data:** AWS S3, BigQuery, PostgreSQL  
+**Languages:** Python, SQL, JavaScript  
+**Libraries:** pandas, numpy, scikit‑learn, TensorFlow, Keras, matplotlib, seaborn  
+**Tools:** Jupyter, VS Code, GitHub Actions, Docker  
+**Cloud & Data:** AWS S3, BigQuery, PostgreSQL  
 
 ---
 ---
@@ -137,6 +139,8 @@ Here is a selection of projects available in this repository.
   </a>
 </p>
 
+# 🔥 [Play Labyrinth of Tartarus](https://labyrinth-ai-engine-1.onrender.com) 🔥🔥
+
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,19,24,30&height=80&section=footer" width="100%" alt="footer wave"/>
 </p>
@@ -149,6 +153,8 @@ Here is a selection of projects available in this repository.
     <img src="https://img.shields.io/badge/🚀_View_Live_Portfolio-blue?style=for-the-badge" alt="View Live Portfolio"/>
   </a>
 </p>
+<p align="center">
+
 
 Feel free to explore the project folders to see the underlying code. If you have any questions, don't hesitate to reach out!
-
+</div>
