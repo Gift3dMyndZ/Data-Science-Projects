@@ -65,15 +65,13 @@ Each project demonstrates end‑to‑end development — from data collection, c
 
 The labyrinth watches. It learns. It adapts.
 
-<img width="1757" height="1261" alt="Labyrinth" src="https://github.com/user-attachments/assets/4c295120-33cb-4198-a0b2-570a9c89efbd" />
+# 🔥💀👁️🕸️⚔️ ENTER THE LABYRINTH ⚔️🕸️👁️💀🔥
 
-| Project Name | Description | Key Skills & Tools | Code |
-|---------------|-------------|--------------------|------|
-| **Labyrinth of Tartarus** | A browser-based 3D raycasting dungeon crawler with an adaptive ML-powered AI backend built with FastAPI and scikit-learn. | Python, FastAPI, JavaScript, scikit-learn, Canvas API | [Code](https://github.com/Gift3dMyndZ/labyrinth-ai-engine) |
-| **Titanic Survival Prediction** | A classic classification project to predict passenger survival on the Titanic using machine learning. Models include Logistic Regression and Random Forest. | Python, Pandas, Scikit‑learn | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/Titanic_Survival_Prediction) |
-| **Customer Segmentation** | Implemented K‑Means clustering to categorize customers based on purchasing behavior and demographics. | Python, NumPy, Matplotlib, Seaborn | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/Customer_Segmentation) |
-| **Automated Weather ETL Pipeline** | Built an automated ETL pipeline integrating Python, Pandas, and APIs to gather, clean, and load daily weather data from OpenWeatherMap. | Python, Pandas, REST APIs | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/weather_etl.py) |
-| **Stock Price Prediction (LSTM)** | Leveraged a Long Short‑Term Memory (LSTM) deep‑learning model to forecast stock price trends from historical Yahoo Finance data. | Python, TensorFlow/Keras, Scikit‑learn, Time Series Analysis | [<img src="https://img.shields.io/badge/View%20Code-181717?style=flat-square&logo=github" />](https://github.com/Gift3dMyndZ/Data-Science-Projects/tree/main/Stock_Price_Prediction) |
+## ☠️☠️☠️ [DESCEND INTO TARTARUS](https://labyrinth-ai-engine-1.onrender.com) ☠️☠️☠️
+
+### 🪦 The Maze Learns • 👁️ The AI Watches • 🔥 Survival Is Not Guaranteed
+
+<img width="1757" height="1261" alt="Labyrinth" src="https://github.com/user-attachments/assets/4c295120-33cb-4198-a0b2-570a9c89efbd" />
 
 ---
 
@@ -138,8 +136,6 @@ Here is a selection of projects available in this repository.
     <img src="https://img.shields.io/badge/🎮_Play_Labyrinth-FF4500?style=for-the-badge" alt="Play Game"/>
   </a>
 </p>
-
-# 🔥 [Play Labyrinth of Tartarus](https://labyrinth-ai-engine-1.onrender.com) 🔥🔥
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,19,24,30&height=80&section=footer" width="100%" alt="footer wave"/>
